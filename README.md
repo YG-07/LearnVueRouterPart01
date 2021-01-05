@@ -4,6 +4,7 @@
 ### 一.资料整理来源  
 coderwhy老师  B站账号：ilovecoding  
 bilibili URL：https://space.bilibili.com/36139192  
+视频(100-p) URL：https://www.bilibili.com/video/BV15741177Eh?p=100
   
 # 二、本部分知识大纲
 (数字表示视频URL分p)  
@@ -196,7 +197,7 @@ Vue.component('Routerview',View)
 Vue.component('RouterLink',Link)
 ```
 
-### 八、vue-router的全局导航守卫 (115-117)
+### 八、vue-router的全局导航守卫 (115-116)
 #### 8.1 (温习)Vuejs的生命周期函数
 博客 URL：https://www.cnblogs.com/wzndkj/p/9612647.html  
 常用的几个生命周期函数：  
