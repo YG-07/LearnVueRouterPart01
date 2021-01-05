@@ -4,7 +4,11 @@
 ### 一.资料整理来源  
 coderwhy老师  B站账号：ilovecoding  
 bilibili URL：https://space.bilibili.com/36139192  
+<<<<<<< HEAD
 视频(100-p) URL：https://www.bilibili.com/video/BV15741177Eh?p=100
+=======
+视频(100-p) URL：https://www.bilibili.com/video/BV15741177Eh?p=100 
+>>>>>>> 647c428e7f32a88002038aabe1d9ef03c8dd16e5
   
 # 二、本部分知识大纲
 (数字表示视频URL分p)  
@@ -78,6 +82,7 @@ homeClick() {
   this.$router.replace('/home')
 }
 ```
+<<<<<<< HEAD
 ### 五、动态路由的使用
 博客 URL：https://blog.csdn.net/jwz934738949/article/details/107595652  
 #### 5.1 案例：用户页面
@@ -114,3 +119,5 @@ computed:{
 * manifest的js：支持代码，为打包的代码做底层支持，如：各种语法的导入导出
 * vender的js：第三方代码，如：vue/vue-router/axios等
 
+=======
+>>>>>>> 647c428e7f32a88002038aabe1d9ef03c8dd16e5
