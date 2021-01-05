@@ -24,5 +24,6 @@ const routes = [
 export default new Router({
   //配置路由和组件之间的关系
   routes,
-  mode: 'history'
+  mode: 'history',
+  linkActiveClass: 'active'
 })
