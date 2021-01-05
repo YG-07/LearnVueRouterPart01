@@ -14,6 +14,9 @@
 <script>
   export default {
     name: "HomeMessage"
+    // created() {
+    //   document.title = "首页-消息"
+    // }
   }
 </script>
 

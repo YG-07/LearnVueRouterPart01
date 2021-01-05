@@ -10,7 +10,10 @@
 
 <script>
   export default {
-    name: "Profile"
+    name: "Profile",
+    beforeRouteEnter(to, from, next) {
+    console.log('进入了Profile页面，这是组件内的守卫')
+  }
   }
 </script>
 

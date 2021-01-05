@@ -173,6 +173,7 @@ profileClick() {
   
 ### 七、区分$router和$route (114)
 #### 7.1 这2个变量是什么?
+简而言之(片面总结)，`$router(路由表对象)包含多个$route(路由规则对象)！`
 **所有的组件都继承自Vue的原型(prototype)**，组件里可以使用这2个变量  
 * $router为`VueRouter实例对象`，它可以导航到不同URL，则使用$router.push等方法
 * $route为当前`router跳转对象`,即当前`活跃的路由对象`,可以获取它name、path、query、params等
@@ -189,10 +190,50 @@ Qbject.defineProperty(Vue.prototype, '$router', {
   get () { return this._routerRoot._router }
 })
 ```
-* 注册RouterLink和RouterView组件，使用时标签是小写，大写处用'-'连接
+* 注册RouterLink和RouterView组件，使用时标签是小写，大写处改用'-'连接
 ```javaScript
 Vue.component('Routerview',View)
 Vue.component('RouterLink',Link)
 ```
 
-### 八、vue-router的全局导航守卫 (115)
+### 八、vue-router的全局导航守卫 (115-117)
+#### 8.1 (温习)Vuejs的生命周期函数
+博客 URL：https://www.cnblogs.com/wzndkj/p/9612647.html  
+常用的几个生命周期函数：  
+1. `created()`，创建完组件后回调
+2. `mounted()`，template挂载到DOM上后回调
+3. `updated()`，界面发生改变时回调
+#### 8.2 案例：跳转页面时改变网页标题
+* 方案一(不推荐)：在每个组件里使用生命周期函数.当组件很多时，工作量巨大
+* 方案二：使用导航守卫
+  * vue-router提供的导航守卫主要用来`监听路由的进入和离开`的
+  * vue-router提供了`beforeEach`和`afterEach`的钩子函数，它们会在路由即将改变前和改变后触发.
+#### 8.3 导航守卫的使用
+* 我们可以利用beforeEach来完成标题的修改  
+1. 首先，我们可以在钩子当中定义一些标题可以利用meta来定义
+```javaScript
+//meta：元数据（描述数据的数据）
+meta: {
+  title: '首页'
+}
+```
+2. 其次，利用导航守卫，修改我们的标题.
+* 导航钩子的三个参数解析，from、to都是Route类型：
+  * to：即将要进入的目标的路由对象.
+  * from：当前导航即将要离开的路由对象。
+  * next：调用该方法后，才能进入下一个钩子.
+```javaScript
+//定义前置钩子(hook，即回调)
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title
+  next()
+})
+```
+#### 8.4 导航守卫的补充
+【Vue Router | 导航守卫】  
+官方URL：https://router.vuejs.org/zh/guide/advanced/navigation-guards.html
+1. 后置钩子不需要主动调用next()函数，`router.afterEach((to, from) => {...})`
+2. 上面我们使用的导航守卫，被称之为`全局守卫`.还有：
+  * 路由独享的守卫，在Route对象里添加属性`beforeEnter: (to, from, next) => {...}`
+  * 组件内的守卫，有`beforeRoute`+`Enter/Update/Leave`3个函数，参数也是`(to, from, next)`
+3. `next('/path')` 或者 `next({path: '/'})`可用于拦截和强制跳转路径

@@ -12,6 +12,9 @@
 <script>
 	export default {
 		name: "HomeNews"
+  //   created() {
+  //     document.title = "首页-新闻"
+  //   }
 	}
 </script>
 
