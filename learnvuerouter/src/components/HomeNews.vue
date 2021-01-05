@@ -1,12 +1,12 @@
 <template>
-	<div>
-		<ui>
+  <div>
+	<ul>
       <li>新闻1</li>
       <li>新闻2</li>
       <li>新闻3</li>
       <li>新闻4</li>
-    </ui>
-	</div>
+    </ul>
+  </div>
 </template>
 
 <script>
