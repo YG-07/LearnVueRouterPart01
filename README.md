@@ -171,3 +171,12 @@ profileClick() {
 }
 ```
   
+### 七、区分$router和$route
+#### 7.1 这2个变量是什么?
+**所有的组件都继承自Vue的原型(prototype)**，组件里可以使用这2个变量  
+* $router为`VueRouter实例对象`，它可以导航到不同URL，则使用$router.push等方法
+* $route为当前`router跳转对象`,即当前`活跃的路由对象`,可以获取它name、path、query、params等
+#### 7.2 代码演示它们的区别
+* main.js里的`router`就是组件里的`$router`
+* 运行项目，查看User组件打印的$router和$route区别
+* 运行项目，在main.js里自定义一个原型变量`$rout`，查看组件，也能调用
