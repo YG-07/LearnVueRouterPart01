@@ -35,3 +35,22 @@ bilibili URL：https://space.bilibili.com/36139192
 * 1.导入路由对象，`import Router from 'vue-router'`名字自定义，再调用`Vue.use（Router）`  
 * 2.创建路由实例，并且传入路由映射配置.`new Router({routes: [...]})`  
 * 3.在Vue实例中挂载创建的路由实例.`export default ...`导出，main.js导入并挂载  
+
+#### 4.2 基本使用vue-router，默认通过hash改变URL
+* 创建组件，导出并导入index.js
+* 添加路由规则，指向home、about的组件
+```javaScript
+{
+  path: '/home',
+  component: Home
+},
+```
+* 默认页面显示home组件，使用重定向redirect属性
+```javaScript
+{
+  path: '',
+  redirect: '/home'
+}
+```
+#### 4.3 使用HTML5的history改变URL
+在index.js里的Router添加mode的option，使用`mode: 'history'`
