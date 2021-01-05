@@ -6,8 +6,11 @@ import Router from 'vue-router'
 
 //ES6的路由懒加载
 const Home = () => import('../components/Home')
+const HomeNews = () => import('../components/HomeNews')
+const HomeMessage = () => import('../components/HomeMessage')
 const About = () => import('../components/About')
 const User = () => import('../components/User')
+
 
 //Vue.use(插件)，安装插件
 Vue.use(Router)
@@ -20,7 +23,22 @@ const routes = [
   },
   {
     path: '/home',
-    component: Home
+    component: Home,
+    //嵌套路由，属性children，子路径不能加'/'
+    children: [
+      {
+        path: '',
+        redirect: 'news'
+      },
+      {
+        path: 'news',
+        component: HomeNews
+      },
+      {
+        path: 'message',
+        component: HomeMessage
+      }
+    ]
   },
   {
     path: '/about',

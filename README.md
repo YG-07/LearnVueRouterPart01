@@ -117,3 +117,26 @@ computed:{
 1. 结合Vue的异步组件和Webpack的代码分析.
 2. AMD写法
 3. 在ES6中，我们可以有更加简单的写法来组织Vue异步组件和Webpack的代码分割
+
+### 六、认识嵌套路由
+#### 6.1 案例：首页的新闻和消息标签
+先进行组件的嵌套，再用children属性定义嵌套路由，与普通路由类似  
+1. 创建HomeNews和HomeMessage.vue组件
+2. 在`'/home'`的路由里定义`children`属性，值是数组类似外层的`route`变量
+3. 同样可以定义重定向默认路径，子路由的path是相对路径，前面`不能加'/'`
+```javaScript
+children: [
+  {
+    path: '',
+    redirect: 'news'
+  },
+  {
+    path: 'news',
+    component: HomeNews
+  },
+  {
+    path: 'message',
+    component: HomeMessage
+  }
+]
+```
