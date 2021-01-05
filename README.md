@@ -17,3 +17,21 @@ bilibili URL：https://space.bilibili.com/36139192
 * 前端路由：前端处理URL和页面之间的映射关系，生成URL在js组件查找，不会向服务器请求资源
 * 后端渲染：当请求url发送时，前端页面向服务器请求页面，此时**动态页面在后端形成**，再**传输给前端**.如：jsp模式(java server page,数据库+服务器+客户端网页)
 * 前端渲染：当请求url发送时，前端页面向服务器请求页面，服务器传输给前端页面为（html+css+js）的页面，页面在**前端游览器进行渲染**.如：AJAX的出现
+
+### 三、改变URL不刷新页面的操作
+#### 3.1 改变方法
+1. 使用`location.hash = 'aaa'`，URL会变成.../#/aaa，使用`location.href`查看URL
+2. 使用history的模式
+* 使用`history.pushState({}, '', 'home')`，URL会变成.../home
+* 使用`history.replaceState({}, '', 'home')`会替换当前URL  
+* `history.back()`和`history.forward()`进行出栈入栈，即后退和前进 
+* `history.go(-1)`表示页面跳转，数字表示相对当前的页面
+
+### 四、安装和使用vue-router
+#### 4.1 安装vue-router
+安装过可直接使用.若创建项目没有安装router，安装：`npm install vue-router --save`  
+#### 在项目中使用
+（因为是一个插件，所以可以通过Vue.use()来安装路由功能）  
+* 1.导入路由对象，`import Router from 'vue-router'`名字自定义，再调用`Vue.use（Router）`  
+* 2.创建路由实例，并且传入路由映射配置.`new Router({routes: [...]})`  
+* 3.在Vue实例中挂载创建的路由实例.`export default ...`导出，main.js导入并挂载  
