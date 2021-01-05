@@ -2,6 +2,9 @@
   <div>
       <h2>我是Profile</h2>
       <p>我的简介信息......喵喵喵</p>
+      <h2>姓名：{{$route.query.name}}</h2>
+      <h2>年龄：{{$route.query.age}}</h2>
+      <h2>身高：{{$route.query.height}}</h2>
   </div>
 </template>
 

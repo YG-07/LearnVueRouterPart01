@@ -82,7 +82,7 @@ homeClick() {
 #### 5.1 案例：用户页面
 过程实际上是从App组件获取用户名，经过路由，传输到User组件  
 1. 先创建一个User.vue组件
-2. 配置路由规则
+2. 配置路由规则，拼接参数实际是`修改hash`进行页面跳转
 ```javaScript
 {
   //设置属性:UID，动态获取一个属性值才显示该组件
@@ -92,15 +92,8 @@ homeClick() {
 ```
 3. 在App里插入用户的标签：`<router-link v-bind:to="'/user/'+userId">用户</router-link>`  
 绑定to属性，并返回一个userId值，`data(){ return{ userId: 'lisi'}}`
-4. 以上实现了动态的URL，若User组件里还要获取用户名,设置一个计算属性来返回经过路由的值`<h2>{{userId}}</h2>`
-```javaScript
-computed:{
-	userId() {
-		//获取活跃路由的UID参数(params: 参数)
-		return this.$route.params.UID
-	}
-}
-```
+4. 以上实现了动态的URL，若User组件里还要获取用户名,通过`params(参数)`的方式`<h2>$route.params.UID</h2>`
+
 #### 5.2 认识路由的懒加载
 官方给出了解释：  
 * 当打包构建应用时，Javascript包会变得非常大，影响页面加载。
@@ -142,7 +135,7 @@ children: [
 ```
 #### 6.2 传递参数的方式
 * 传递参数主要有两种类型：**params**和**query**
-* URL的组成部分：`协议类型：[//服务器地址[：端口号]]/资源层级UNIX文件路径]文件名[?查询][#片段ID]`  
+* Wiki百科URL的组成部分：`URI=协议类型：[//服务器地址[：端口号]]/资源层级UNIX文件路径]文件名[?查询][#片段ID]`或`URI=scheme:[//quthority]path[?query][#fragment]`  
   如：`http://localhost:8080/profile?name=Tom&age=18&height=1.88`  
 * params的类型：
   1. 配置路由格式：/router/:id
@@ -152,3 +145,28 @@ children: [
   1. 配置路由格式：/router，也就是普通配置
   2. 传递的方式：对象中使用query的key作为传递方式
   3. 传递后形成的路径：/router?id=123，/router?id=abc
+#### 6.3 案例：query传参到profile页面
+1. 创建Profile.vue组件
+2. 新建profile路由表
+3. 在实例中通过路由使用组件，绑定to属性，通过对象传参，发送query请求
+```HTML
+<router-link :to="{path: '/profile', query: {name: 'Tom', age:18, height:1.88}}">
+  档案
+</router-link>
+```
+4. 若想获取`query(请求)`的数据，用`{{$route.query.name}}`方式直接使用
+
+#### 6.4 通过标签的事件方法，发送2种请求params和query
+1. 设置用户、档案的按钮
+2. 监听点击事件`@click`
+3. 设置事件方法，同样是`拼接参数`和`传递对象`
+```javaScript
+//userId来自于App的data()
+userClick() {
+  this.$router.push('/user/'+this.userId)
+},
+profileClick() {
+  this.$router.push({path:'/profile',
+    query:{name: 'John', age: 19, height: 1.81}})
+}
+```
