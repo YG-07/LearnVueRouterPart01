@@ -78,3 +78,39 @@ homeClick() {
   this.$router.replace('/home')
 }
 ```
+### 五、动态路由的使用
+博客 URL：https://blog.csdn.net/jwz934738949/article/details/107595652  
+#### 5.1 案例：用户页面
+过程实际上是从App组件获取用户名，经过路由，传输到User组件  
+1. 先创建一个User.vue组件
+2. 配置路由规则
+```javaScript
+{
+  //设置属性:UID，动态获取一个属性值才显示该组件
+  path: '/user/:UID',
+  component: User
+}
+```
+3. 在App里插入用户的标签：`<router-link v-bind:to="'/user/'+userId">用户</router-link>`  
+绑定to属性，并返回一个userId值，`data(){ return{ userId: 'lisi'}}`
+4. 以上实现了动态的URL，若User组件里还要获取用户名,设置一个计算属性来返回经过路由的值`<h2>{{userId}}</h2>`
+```javaScript
+computed:{
+	userId() {
+		//获取活跃路由的UID参数(params: 参数)
+		return this.$route.params.UID
+	}
+}
+```
+#### 5.2 认识路由的懒加载
+官方给出了解释：  
+* 当打包构建应用时，Javascript包会变得非常大，影响页面加载。
+* 如果我们能把不同路由对应的组件分割成不同的代码块，然后当路由被访问的时候才加载对应组件，这样就更加高效了
+
+#### 5.3 打包项目，分析dist目录
+打包指令：`npm run build`  
+在dist目录里有：static文件夹和index.html，前者包括css、js文件夹，
+* app的js：业务代码，自己编写的代码
+* manifest的js：支持代码，为打包的代码做底层支持，如：各种语法的导入导出
+* vender的js：第三方代码，如：vue/vue-router/axios等
+
