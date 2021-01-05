@@ -7,7 +7,7 @@ bilibili URL：https://space.bilibili.com/36139192
   
 # 二、本部分知识大纲
 (数字表示视频URL分p)  
-### 一、用vue-cli2创建含vue-router的项目
+### 一、用vue-cli2创建含vue-router的项目 (100-102)
 指令：`vue init webpack learnvuerouter`  
 
 ### 二、理解web前后端渲染和前后端路由，4个概念
@@ -17,7 +17,7 @@ bilibili URL：https://space.bilibili.com/36139192
 * 后端渲染：当请求url发送时，前端页面向服务器请求页面，此时**动态页面在后端形成**，再**传输给前端**.如：jsp模式(java server page,数据库+服务器+客户端网页)
 * 前端渲染：当请求url发送时，前端页面向服务器请求页面，服务器传输给前端页面为（html+css+js）的页面，页面在**前端游览器进行渲染**.如：AJAX的出现
 
-### 三、改变URL不刷新页面的操作
+### 三、改变URL不刷新页面的操作 (102)
 #### 3.1 改变方法
 1. 使用`location.hash = 'aaa'`，URL会变成.../#/aaa，使用`location.href`查看URL
 2. 使用history的模式
@@ -26,7 +26,7 @@ bilibili URL：https://space.bilibili.com/36139192
 * `history.back()`和`history.forward()`进行出栈入栈，即后退和前进 
 * `history.go(-1)`表示页面跳转，数字表示相对当前的页面
 
-### 四、安装和使用vue-router
+### 四、安装和使用vue-router (103-104)
 #### 4.1 安装vue-router
 安装过可直接使用.若创建项目没有安装router，安装：`npm install vue-router --save`  
 #### 在项目中使用
@@ -77,7 +77,7 @@ homeClick() {
   this.$router.replace('/home')
 }
 ```
-### 五、动态路由的使用
+### 五、动态路由的使用 (108-110)
 博客 URL：https://blog.csdn.net/jwz934738949/article/details/107595652  
 #### 5.1 案例：用户页面
 过程实际上是从App组件获取用户名，经过路由，传输到User组件  
@@ -111,7 +111,7 @@ homeClick() {
 2. AMD写法
 3. 在ES6中，我们可以有更加简单的写法来组织Vue异步组件和Webpack的代码分割
 
-### 六、认识嵌套路由
+### 六、认识嵌套路由 (111-113)
 #### 6.1 案例：首页的新闻和消息标签
 先进行组件的嵌套，再用children属性定义嵌套路由，与普通路由类似  
 1. 创建HomeNews和HomeMessage.vue组件
@@ -171,7 +171,7 @@ profileClick() {
 }
 ```
   
-### 七、区分$router和$route
+### 七、区分$router和$route (114)
 #### 7.1 这2个变量是什么?
 **所有的组件都继承自Vue的原型(prototype)**，组件里可以使用这2个变量  
 * $router为`VueRouter实例对象`，它可以导航到不同URL，则使用$router.push等方法
@@ -180,3 +180,19 @@ profileClick() {
 * main.js里的`router`就是组件里的`$router`
 * 运行项目，查看User组件打印的$router和$route区别
 * 运行项目，在main.js里自定义一个原型变量`$rout`，查看组件，也能调用
+#### 7.3 vue-router3.0.2源码分析
+* 在vue-router源码中，使用了一个方法向Vue的原型里添加了这2个变量  
+  关于`Qbject.defineProperty()`，在项目main.js有简单演示  
+  博客 URL：https://blog.csdn.net/m0_38102188/article/details/86535632
+```javaScript
+Qbject.defineProperty(Vue.prototype, '$router', {
+  get () { return this._routerRoot._router }
+})
+```
+* 注册RouterLink和RouterView组件，使用时标签是小写，大写处用'-'连接
+```javaScript
+Vue.component('Routerview',View)
+Vue.component('RouterLink',Link)
+```
+
+### 八、vue-router的全局导航守卫 (115)
