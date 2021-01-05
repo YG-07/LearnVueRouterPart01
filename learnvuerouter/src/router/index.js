@@ -1,8 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '../components/Home'
-import About from '../components/About'
-import User from '../components/User'
+// import Home from '../components/Home'
+// import About from '../components/About'
+// import User from '../components/User'
+
+//ES6的路由懒加载
+const Home = () => import('../components/Home')
+const About = () => import('../components/About')
+const User = () => import('../components/User')
 
 //Vue.use(插件)，安装插件
 Vue.use(Router)

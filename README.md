@@ -111,4 +111,9 @@ computed:{
 在dist目录里有：static文件夹和index.html，前者包括css、js文件夹，
 * app的js：业务代码，自己编写的代码
 * manifest的js：支持代码，为打包的代码做底层支持，如：各种语法的导入导出
-* vender的js：第三方代码，如：vue/vue-router/axios等
+* vendor的js：第三方代码，如：vue/vue-router/axios等
+
+#### 5.4 懒加载的方式
+1. 结合Vue的异步组件和Webpack的代码分析.
+2. AMD写法
+3. 在ES6中，我们可以有更加简单的写法来组织Vue异步组件和Webpack的代码分割
