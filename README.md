@@ -140,3 +140,15 @@ children: [
   }
 ]
 ```
+#### 6.2 传递参数的方式
+* 传递参数主要有两种类型：**params**和**query**
+* URL的组成部分：`协议类型：[//服务器地址[：端口号]]/资源层级UNIX文件路径]文件名[?查询][#片段ID]`  
+  如：`http://localhost:8080/profile?name=Tom&age=18&height=1.88`  
+* params的类型：
+  1. 配置路由格式：/router/:id
+  2. 传递的方式：在path后面跟上对应的值
+  3. 传递后形成的路径：/router/123，/router/abc
+* query的类型：
+  1. 配置路由格式：/router，也就是普通配置
+  2. 传递的方式：对象中使用query的key作为传递方式
+  3. 传递后形成的路径：/router?id=123，/router?id=abc

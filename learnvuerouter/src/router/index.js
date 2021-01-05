@@ -10,6 +10,8 @@ const HomeNews = () => import('../components/HomeNews')
 const HomeMessage = () => import('../components/HomeMessage')
 const About = () => import('../components/About')
 const User = () => import('../components/User')
+const Profile = () => import('../components/Profile')
+
 
 
 //Vue.use(插件)，安装插件
@@ -49,6 +51,10 @@ const routes = [
     //过程是从App组件获取用户名，经过路由，传输到User组件
     path: '/user/:UID',
     component: User
+  },
+  {
+    path: '/profile',
+    component: Profile
   }
 ]
 export default new Router({
