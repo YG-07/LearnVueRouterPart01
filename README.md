@@ -54,3 +54,27 @@ bilibili URL：https://space.bilibili.com/36139192
 ```
 #### 4.3 使用HTML5的history改变URL
 在index.js里的Router添加mode的option，使用`mode: 'history'`
+
+#### 4.4 App.vue通过路由使用组件
+* 使用router-link使用组件,to属性指定跳转路径，tag指定渲染后的标签，replace属性取消history记录，
+* router-view显示组件
+* 使用router-link的属性`active-class="active"`改变active属性名，或在index.js里配置`linkActiveClass: 'active'`
+```HTML
+<router-link to="/home" tag="button" replace active-class="active">首页</router-link>
+<router-link to="/about" tag="button">关于</router-link>
+<router-view></router-view>
+```
+
+#### 4.4 通过标签的事件方法，跳转页面
+* 如，使用button标签的点击事件
+```HTML
+<button @click="homeClick">首页</button>
+<button @click="aboutClick">关于</button>
+```
+* 通过方法修改路由，使用vue-router的$router.避免绕过index.js直接修改路由
+```javaScript
+homeClick() {
+  // this.$router.push('/home')
+  this.$router.replace('/home')
+}
+```
