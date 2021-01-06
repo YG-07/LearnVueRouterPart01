@@ -45,7 +45,7 @@ bilibili URL：https://space.bilibili.com/36139192
   component: Home
 },
 ```
-* 默认页面显示home组件，使用重定向redirect属性
+* 默认页面显示home组件，使用重定向`redirect属性`
 ```javaScript
 {
   path: '',
@@ -55,7 +55,7 @@ bilibili URL：https://space.bilibili.com/36139192
 #### 4.3 使用HTML5的history改变URL
 在index.js里的Router添加mode的option，使用`mode: 'history'`
 
-#### 4.4 App.vue通过路由使用组件
+#### 4.4 使用router-link标签跳转页面
 * 使用router-link使用组件,to属性指定跳转路径，tag指定渲染后的标签，replace属性取消history记录，
 * router-view显示组件
 * 使用router-link的属性`active-class="active"`改变active属性名，或在index.js里配置`linkActiveClass: 'active'`
@@ -65,7 +65,7 @@ bilibili URL：https://space.bilibili.com/36139192
 <router-view></router-view>
 ```
 
-#### 4.4 通过标签的事件方法，跳转页面
+#### 4.4 通过普通标签的事件方法，跳转页面
 * 如，使用button标签的点击事件
 ```HTML
 <button @click="homeClick">首页</button>
