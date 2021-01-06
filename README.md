@@ -256,10 +256,11 @@ beforeRouteLeave(to, from, next) {
 * keep-alive 是Vue内置的一个组件，可以使被`包含的组件保留状态`，或`避免重新渲染`.他有2个属性：  
   * **include** 字符串或正则表达，只有匹配的组件会被缓存
   * **exclude** 字符串或正则表达式，任何匹配的组件都不会被缓存
+* router-view 也是一个组件，如果直接被包在keep-alive里面，所有`路径匹配到的视图组件`都会被缓存：
 2. 需求：切换页面时,希望`重新加载`某些页面，使用方法：  
 ```HTML
+<!-- in/exclude使用组件的name值，用','隔开，不能加空格 -->
 <keep-alive exclude="Profile,User">
   <router-view/>
 </keep-alive>
 ```
-* router-view 也是一个组件，如果直接被包在keep-alive里面，所有`路径匹配到的视图组件`都会被缓存：
