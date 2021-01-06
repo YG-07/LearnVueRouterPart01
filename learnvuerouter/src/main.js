@@ -12,6 +12,8 @@ new Vue({
   router,
   render: h => h(App)
 })
+
+/*
 console.log("main.js打印的router对象")
 console.log(router)
 
@@ -25,3 +27,4 @@ console.log(obj)
 
 obj.height=1.79
 console.log(obj)
+*/

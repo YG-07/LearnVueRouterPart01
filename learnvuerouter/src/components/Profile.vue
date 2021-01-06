@@ -11,9 +11,16 @@
 <script>
   export default {
     name: "Profile",
-    beforeRouteEnter(to, from, next) {
-    console.log('进入了Profile页面，这是组件内的守卫')
-  }
+    created() {
+      console.log("profile created")
+    },
+    destroyed() {
+      console.log("profile destroyed")
+    },
+    //3.组件内的守卫
+    // beforeRouteEnter(to, from, next) {
+    // console.log('进入了Profile页面，这是组件内的守卫')
+    // }
   }
 </script>
 

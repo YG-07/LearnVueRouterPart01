@@ -32,10 +32,10 @@ const routes = [
     },
     //嵌套路由，属性children，子路径不能加'/'
     children: [
-      {
-        path: '',
-        redirect: 'news'
-      },
+      // {
+      //   path: '',
+      //   redirect: 'news'
+      // },
       {
         path: 'news',
         component: HomeNews,
@@ -58,9 +58,10 @@ const routes = [
     meta: {
       title: '关于'
     },
-    beforeEnter: (to, from, next) => {
-      console.log('这是about的路由独享守卫');
-    }
+    //2. 路由独享守卫
+    // beforeEnter: (to, from, next) => {
+    //   console.log('这是about的路由独享守卫');
+    // }
   },
   {
     //设置:UID，动态获取一个属性值
@@ -88,18 +89,18 @@ const router = new Router({
 
 //1.全局守卫
 //前置钩子
-router.beforeEach((to, from, next) => {
-  //从from跳转到to，都是Route类型
-  document.title = to.meta.title
-  // console.log(to)
-  //重构此方法时要手动调用一下next()才能正常跳转
-  console.log("前置hook");
-  next()
-})
+// router.beforeEach((to, from, next) => {
+//   //从from跳转到to，都是Route类型
+//   document.title = to.meta.title
+//   // console.log(to)
+//   //重构此方法时要手动调用一下next()才能正常跳转
+//   console.log("前置hook");
+//   next()
+// })
 
 //后置钩子
-router.afterEach((to, from) => {
-  console.log("后置hook");
-})
+// router.afterEach((to, from) => {
+//   console.log("后置hook");
+// })
 
 export default router

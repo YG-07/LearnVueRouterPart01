@@ -16,6 +16,12 @@ export default {
       return this.$route.params.UID
     }
   },
+  created() {
+    console.log("user created")
+  },
+  destroyed() {
+    console.log("user destroyed")
+  },
   methods: {
     btnClick() {
       console.log("组件里打印的$router，全局的路由对象")

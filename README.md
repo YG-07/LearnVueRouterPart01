@@ -238,3 +238,28 @@ router.beforeEach((to, from, next) => {
   * 路由独享的守卫，在Route对象里添加属性`beforeEnter: (to, from, next) => {...}`
   * 组件内的守卫，有`beforeRoute`+`Enter/Update/Leave`3个函数，参数也是`(to, from, next)`
 3. `next('/path')` 或者 `next({path: '/'})`可用于拦截和强制跳转路径
+
+### 九、vue-router的keep-alive
+#### 9.1 keep-alive是什么?
+1. 需求：切换页面时，希望`保留页面的子页面路径`，避免重新加载还得使用`<keep-alive>`  
+ 思路：先删除Home路由的嵌套重定向，data()里使用path保存当前路径，使用组件内守卫，激活和离开组件时改变组件当前的path值.`activated和de~函数`只有keep-alive存在时生效
+```javaScript
+//在Home页面，有News和Message子页面
+activated() {
+  this.$router.push(this.path)
+},
+beforeRouteLeave(to, from, next) {
+  this.path = this.$route.path
+  next()
+}
+```
+* keep-alive 是Vue内置的一个组件，可以使被`包含的组件保留状态`，或`避免重新渲染`.他有2个属性：  
+  * **include** 字符串或正则表达，只有匹配的组件会被缓存
+  * **exclude** 字符串或正则表达式，任何匹配的组件都不会被缓存
+2. 需求：切换页面时,希望`重新加载`某些页面，使用方法：  
+```HTML
+<keep-alive exclude="Profile,User">
+  <router-view/>
+</keep-alive>
+```
+* router-view 也是一个组件，如果直接被包在keep-alive里面，所有`路径匹配到的视图组件`都会被缓存：
