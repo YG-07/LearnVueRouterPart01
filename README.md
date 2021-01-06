@@ -239,7 +239,7 @@ router.beforeEach((to, from, next) => {
   * 组件内的守卫，有`beforeRoute`+`Enter/Update/Leave`3个函数，参数也是`(to, from, next)`
 3. `next('/path')` 或者 `next({path: '/'})`可用于拦截和强制跳转路径
 
-### 九、vue-router的keep-alive
+### 九、vue-router的keep-alive (117-118)
 #### 9.1 keep-alive是什么?
 1. 需求：切换页面时，希望`保留页面的子页面路径`，避免重新加载还得使用`<keep-alive>`  
  思路：先删除Home路由的嵌套重定向，data()里使用path保存当前路径，使用组件内守卫，激活和离开组件时改变组件当前的path值.`activated和de~函数`只有keep-alive存在时生效
