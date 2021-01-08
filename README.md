@@ -199,7 +199,7 @@ Vue.component('RouterLink',Link)
 
 ### 八、vue-router的全局导航守卫 (115-116)
 #### 8.1 (温习)Vuejs的生命周期函数
-博客 URL：https://www.cnblogs.com/wzndkj/p/9612647.html  
+简书博客 URL：https://www.jianshu.com/p/6363e089c321
 常用的几个生命周期函数：  
 1. `created()`，创建完组件后回调
 2. `mounted()`，template挂载到DOM上后回调
